@@ -1,0 +1,18 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { plugins } from '../site.config';
+---
+<BaseLayout title="Plugins">
+  <h1>Plugins</h1>
+  <p style="color: var(--muted);">Extensions and plugins I've shipped for other tools.</p>
+  <div class="grid">
+    {plugins.map((p) => (
+      <div class="card">
+        <h3>{p.name}</h3>
+        {p.status && <div class="meta">{p.status}</div>}
+        <p>{p.description}</p>
+        {p.href && <p><a class="cta" href={p.href}>View →</a></p>}
+      </div>
+    ))}
+  </div>
+</BaseLayout>

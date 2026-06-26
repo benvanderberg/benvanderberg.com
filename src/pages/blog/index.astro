@@ -1,0 +1,30 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const fmt = (d: Date) =>
+  d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric', timeZone: 'UTC' });
+---
+<BaseLayout title="Blog">
+  <h1>Blog</h1>
+  {posts.length === 0 ? (
+    <p style="color: var(--muted);">No posts yet. Drop a <code>.md</code> file into <code>src/content/blog/</code>.</p>
+  ) : (
+    <ul class="entry-list">
+      {posts.map((post) => (
+        <li>
+          <a class={`entry-link${post.data.heroImage ? ' entry-link--thumb' : ''}`} href={`/blog/${post.id}/`}>
+            {post.data.heroImage && <img class="entry-thumb" src={post.data.heroImage} alt="" />}
+            <div>
+              <h3>{post.data.title}</h3>
+              <div class="meta">{fmt(post.data.pubDate)}</div>
+              {post.data.description && <p class="desc">{post.data.description}</p>}
+            </div>
+          </a>
+        </li>
+      ))}
+    </ul>
+  )}
+</BaseLayout>

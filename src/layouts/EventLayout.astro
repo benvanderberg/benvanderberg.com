@@ -1,0 +1,96 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import MapEmbed from '../components/MapEmbed.astro';
+import { formatEventDate } from '../lib/eventDate';
+
+interface Props {
+  title: string;
+  description?: string;
+  startDate: Date;
+  endDate?: Date;
+  location?: string;
+  address?: string;
+  image?: string;
+  url?: string;
+  startHasTime: boolean;
+  endHasTime: boolean;
+}
+const {
+  title,
+  description,
+  startDate,
+  endDate,
+  location,
+  address,
+  image,
+  url,
+  startHasTime,
+  endHasTime,
+} = Astro.props;
+
+const mapQuery = address ?? location;
+---
+<BaseLayout title={title} description={description}>
+  <article class="article event">
+    <h1>{title}</h1>
+
+    <dl class="event-meta">
+      <div>
+        <dt>When</dt>
+        <dd>
+          {formatEventDate(startDate, startHasTime)}
+          {endDate && <> – {formatEventDate(endDate, endHasTime)}</>}
+        </dd>
+      </div>
+      {location && (
+        <div>
+          <dt>Where</dt>
+          <dd>
+            {location}
+            {address && address !== location && <><br /><span class="addr">{address}</span></>}
+          </dd>
+        </div>
+      )}
+      {url && (
+        <div>
+          <dt>Link</dt>
+          <dd><a href={url} target="_blank" rel="noopener noreferrer">{url}</a></dd>
+        </div>
+      )}
+    </dl>
+
+    {image && <img class="hero-img" src={image} alt="" />}
+
+    <div class="article-body">
+      <slot />
+    </div>
+
+    {mapQuery && <MapEmbed query={mapQuery} />}
+
+    <hr />
+    <p><a href="/events/">← All events</a></p>
+  </article>
+</BaseLayout>
+
+<style>
+  .event-meta {
+    display: grid;
+    grid-template-columns: 5rem 1fr;
+    gap: 0.5rem 1.25rem;
+    margin: 1.5rem 0 2.5rem;
+    padding: 1.25rem 1.5rem;
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    font-size: 0.95rem;
+  }
+  .event-meta > div { display: contents; }
+  .event-meta dt {
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 0.78rem;
+    padding-top: 0.15rem;
+  }
+  .event-meta dd { margin: 0; }
+  .event-meta .addr { color: var(--muted); font-size: 0.9em; }
+</style>

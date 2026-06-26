@@ -1,0 +1,54 @@
+---
+/**
+ * Embedded Google Map for a given address.
+ *
+ * Uses the keyless `google.com/maps?output=embed` endpoint so no API key
+ * or billing setup is required. Good enough for showing event locations.
+ */
+interface Props {
+  /** Full address or place query, e.g. "Adobe HQ, 345 Park Ave, San Jose, CA". */
+  query: string;
+  /** Accessible label for the iframe. Defaults to "Map of {query}". */
+  title?: string;
+  /** Aspect ratio (CSS aspect-ratio). Default 16/9. */
+  aspectRatio?: string;
+}
+const { query, title, aspectRatio = '16 / 9' } = Astro.props;
+const src = `https://www.google.com/maps?q=${encodeURIComponent(query)}&output=embed`;
+const directions = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(query)}`;
+---
+<figure class="map-embed">
+  <iframe
+    src={src}
+    title={title ?? `Map of ${query}`}
+    loading="lazy"
+    referrerpolicy="no-referrer-when-downgrade"
+    style={`aspect-ratio: ${aspectRatio};`}
+    allowfullscreen
+  ></iframe>
+  <figcaption>
+    <a href={directions} target="_blank" rel="noopener noreferrer">Get directions →</a>
+  </figcaption>
+</figure>
+
+<style>
+  .map-embed {
+    margin: 2rem 0;
+  }
+  .map-embed iframe {
+    width: 100%;
+    height: auto;
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    display: block;
+  }
+  .map-embed figcaption {
+    margin-top: 0.6rem;
+    font-size: 0.9rem;
+    color: var(--muted);
+  }
+  .map-embed figcaption a {
+    border: none;
+    font-weight: 500;
+  }
+</style>

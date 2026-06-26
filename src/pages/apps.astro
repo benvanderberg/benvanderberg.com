@@ -1,0 +1,18 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { apps } from '../site.config';
+---
+<BaseLayout title="Apps">
+  <h1>Apps</h1>
+  <p style="color: var(--muted);">Things I've built that you can use.</p>
+  <div class="grid">
+    {apps.map((app) => (
+      <div class="card">
+        <h3>{app.name}</h3>
+        {app.status && <div class="meta">{app.status}</div>}
+        <p>{app.description}</p>
+        {app.href && <p><a class="cta" href={app.href}>View →</a></p>}
+      </div>
+    ))}
+  </div>
+</BaseLayout>

@@ -1,0 +1,29 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import VideoFilter from '../../components/VideoFilter';
+
+const all = await getCollection('videos', ({ data }) => !data.draft);
+const videos = all
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .map((v) => ({
+    id: v.id,
+    title: v.data.title,
+    description: v.data.description,
+    youtubeId: v.data.youtubeId,
+    topics: v.data.topics,
+    href: `/videos/${v.id}/`,
+  }));
+---
+<BaseLayout title="Videos" wide={true}>
+  <h1>Videos</h1>
+  <p style="color: var(--muted);">Talks, demos, recordings.</p>
+
+  {videos.length === 0 ? (
+    <p style="color: var(--muted); margin-top: 2rem;">
+      No videos yet. Drop a <code>.md</code> file into <code>src/content/videos/</code>.
+    </p>
+  ) : (
+    <VideoFilter videos={videos} client:load />
+  )}
+</BaseLayout>

@@ -1,0 +1,98 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import { formatEventDateShort, hasTime, isPast } from '../../lib/eventDate';
+
+const all = (await getCollection('events', ({ data }) => !data.draft));
+
+const upcoming = all
+  .filter((e) => !isPast(e.data.startDate, e.data.endDate))
+  .sort((a, b) => a.data.startDate.valueOf() - b.data.startDate.valueOf());
+
+const past = all
+  .filter((e) => isPast(e.data.startDate, e.data.endDate))
+  .sort((a, b) => b.data.startDate.valueOf() - a.data.startDate.valueOf());
+---
+<BaseLayout title="Events">
+  <h1>Events</h1>
+  <p style="color: var(--muted);">Talks, meetups, and other public appearances.</p>
+
+  {upcoming.length === 0 && past.length === 0 && (
+    <p style="color: var(--muted); margin-top: 2rem;">
+      No events yet. Drop a <code>.md</code> file into <code>src/content/events/</code>.
+    </p>
+  )}
+
+  {upcoming.length > 0 && (
+    <section>
+      <h2>Upcoming</h2>
+      <ul class="entry-list">
+        {upcoming.map((event) => (
+          <li>
+            <a class="entry-link event-row" href={`/events/${event.id}/`}>
+              {event.data.image && (
+                <img class="event-thumb" src={event.data.image} alt="" loading="lazy" />
+              )}
+              <div class="event-row-body">
+                <h3>{event.data.title}</h3>
+                <div class="meta">
+                  {formatEventDateShort(event.data.startDate, hasTime(event.data.startDate))}
+                  {event.data.location && <> · {event.data.location}</>}
+                </div>
+                {event.data.description && <p class="desc">{event.data.description}</p>}
+              </div>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )}
+
+  {past.length > 0 && (
+    <section style="margin-top: 3rem;">
+      <h2>Past</h2>
+      <ul class="entry-list">
+        {past.map((event) => (
+          <li>
+            <a class="entry-link event-row" href={`/events/${event.id}/`}>
+              {event.data.image && (
+                <img class="event-thumb" src={event.data.image} alt="" loading="lazy" />
+              )}
+              <div class="event-row-body">
+                <h3>{event.data.title}</h3>
+                <div class="meta">
+                  {formatEventDateShort(event.data.startDate, hasTime(event.data.startDate))}
+                  {event.data.location && <> · {event.data.location}</>}
+                </div>
+                {event.data.description && <p class="desc">{event.data.description}</p>}
+              </div>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )}
+</BaseLayout>
+
+<style>
+  .event-row {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 1.25rem;
+    align-items: start;
+  }
+  .event-row:not(:has(.event-thumb)) {
+    grid-template-columns: 1fr;
+  }
+  .event-thumb {
+    width: 120px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 4px;
+    border: 1px solid var(--rule);
+  }
+  @media (max-width: 480px) {
+    .event-row { grid-template-columns: 1fr; }
+    .event-thumb { width: 100%; height: 160px; }
+  }
+</style>
