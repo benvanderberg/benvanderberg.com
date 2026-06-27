@@ -16,22 +16,31 @@ const fmt = (d: Date) =>
   d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' });
 ---
 <BaseLayout title={video.data.title} description={video.data.description}>
-  <article class="article">
-    <h1>{video.data.title}</h1>
-    <span class="meta">{fmt(video.data.pubDate)}</span>
-
-    <div class="video-embed video-embed--full">
-      <iframe
-        src={`https://www.youtube-nocookie.com/embed/${video.data.youtubeId}?rel=0`}
-        title={video.data.title}
-        loading="lazy"
-        allow="accelerated-2d-canvas; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerpolicy="strict-origin-when-cross-origin"
-        allowfullscreen
-      ></iframe>
+  <div class="video-page">
+    <div class="video-full-bleed">
+      <div class="video-embed">
+        <iframe
+          src={`https://www.youtube-nocookie.com/embed/${video.data.youtubeId}?rel=0`}
+          title={video.data.title}
+          loading="lazy"
+          allow="accelerated-2d-canvas; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen
+        ></iframe>
+      </div>
     </div>
 
-    {video.data.description && <p class="lede" style="font-size: 1.15rem; color: var(--muted);">{video.data.description}</p>}
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true"> / </span>
+      <a href="/videos/">Videos</a>
+      <span aria-hidden="true"> / </span>
+      <span>{video.data.title}</span>
+    </nav>
+    <h1>{video.data.title}</h1>
+    <span class="meta video-page__meta">{fmt(video.data.pubDate)}</span>
+
+    {video.data.description && <p class="lede" style="font-size: 1.15rem; color: var(--muted); margin-top: 1.5rem;">{video.data.description}</p>}
 
     <div class="article-body">
       <Content />
@@ -47,5 +56,5 @@ const fmt = (d: Date) =>
 
     <hr />
     <p><a href="/videos/">← All videos</a></p>
-  </article>
+  </div>
 </BaseLayout>

@@ -8,8 +8,9 @@ interface Props {
   title?: string;
   description?: string;
   wide?: boolean;
+  canonicalUrl?: string;
 }
-const { title, description = site.description, wide = false } = Astro.props;
+const { title, description = site.description, wide = false, canonicalUrl } = Astro.props;
 const fullTitle = title ? `${title} — ${site.title}` : site.title;
 ---
 <!doctype html>
@@ -24,6 +25,15 @@ const fullTitle = title ? `${title} — ${site.title}` : site.title;
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
+    {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
+    <!-- Google Analytics -->
+    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-EKNK7E8PJW"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-EKNK7E8PJW');
+    </script>
   </head>
   <body>
     <Header />

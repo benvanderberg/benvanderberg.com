@@ -7,12 +7,13 @@ interface Props {
   pubDate: Date;
   updatedDate?: Date;
   heroImage?: string;
+  canonicalUrl?: string;
 }
-const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
+const { title, description, pubDate, updatedDate, heroImage, canonicalUrl } = Astro.props;
 const fmt = (d: Date) =>
   d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' });
 ---
-<BaseLayout title={title} description={description}>
+<BaseLayout title={title} description={description} canonicalUrl={canonicalUrl}>
   <article class="article">
     <h1>{title}</h1>
     <span class="meta">

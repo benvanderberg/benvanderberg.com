@@ -63,7 +63,14 @@ export default function VideoFilter({ videos }: Props) {
               {v.topics.length > 0 && (
                 <div className="video-item__topics">
                   {v.topics.map((t) => (
-                    <span key={t} className="topic-tag">{t}</span>
+                    <button
+                      key={t}
+                      type="button"
+                      className={`topic-tag${t === active ? ' topic-tag--active' : ''}`}
+                      onClick={() => setActive(t)}
+                    >
+                      {t}
+                    </button>
                   ))}
                 </div>
               )}

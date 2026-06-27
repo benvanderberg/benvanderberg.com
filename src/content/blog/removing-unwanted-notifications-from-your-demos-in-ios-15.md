@@ -2,9 +2,8 @@
 title: "Demo Tip: Remove unwanted notifications from your demos in iOS 15"
 description: "Use iOS 15 Focus Mode to create a dedicated demo mode on your iPhone that blocks distracting notifications and hides personal apps during live presentations."
 pubDate: 2022-01-11
+heroImage: /images/blog/DemoFail.png
 ---
-
-![Demo Fail](/images/blog/DemoFail.png)
 
 When doing live demos on customer calls or meetings, there are lots of things that can make things awkward really quickly. One of those is getting text message notifications in the middle of your demo. If you're lucky, it's your boss saying "wrap this up, I'm bored" in front of everyone. On a terrible day, your ex is texting you, and you start hearing snickers in the audience as they react to the text message they weren't meant to see. Either way, unintended notifications can get awkward really quickly.
 

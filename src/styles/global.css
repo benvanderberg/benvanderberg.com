@@ -98,9 +98,9 @@ blockquote {
 
 /* Header */
 .site-header {
-  border-bottom: 1px solid var(--rule);
+  border-bottom: 1px solid #222;
   padding: 1.4rem 0;
-  background: var(--bg);
+  background: #000;
   position: sticky;
   top: 0;
   z-index: 10;
@@ -119,6 +119,7 @@ blockquote {
   letter-spacing: -0.02em;
   font-size: 1.1rem;
   border: none;
+  color: #fff;
 }
 .site-nav {
   display: flex;
@@ -127,12 +128,12 @@ blockquote {
 }
 .site-nav a {
   border: none;
-  color: var(--muted);
+  color: #888;
   font-size: 0.95rem;
 }
 .site-nav a:hover,
 .site-nav a[aria-current="page"] {
-  color: var(--fg);
+  color: #fff;
   opacity: 1;
 }
 
@@ -155,7 +156,7 @@ blockquote {
 }
 
 /* Main */
-main { padding: 3rem 0 2rem; }
+main { padding: 3rem 0 2rem; overflow-x: clip; }
 
 /* Hero */
 .hero {
@@ -203,6 +204,22 @@ a.entry-link.entry-link--thumb {
   a.entry-link.entry-link--thumb {
     grid-template-columns: 1fr;
   }
+}
+.entry-type-badge {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  padding: 0.15rem 0.5rem;
+  border-radius: 3px;
+  margin-bottom: 0.35rem;
+  background: #f0f0f0;
+  color: var(--muted);
+}
+.entry-type-badge--video {
+  background: #000;
+  color: #fff;
 }
 .entry-list h3 {
   margin: 0 0 0.25em;
@@ -272,6 +289,42 @@ a.entry-link.entry-link--thumb {
 .article-body h3 { font-family: var(--font-sans); }
 .article-body a { border-bottom-color: var(--muted); }
 .article-body img { margin: 2em auto; border-radius: 4px; }
+
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 0.88rem;
+  color: var(--muted);
+  margin-bottom: 1.25rem;
+}
+.breadcrumb a {
+  color: var(--muted);
+  border-bottom-color: var(--rule);
+}
+.breadcrumb a:hover { color: var(--fg); opacity: 1; }
+.breadcrumb span:last-child {
+  color: var(--fg);
+}
+
+/* Video detail page */
+.video-page {
+  margin-top: -3rem;
+}
+.video-page__meta {
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+  display: block;
+}
+.video-full-bleed {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  background: #000;
+  margin-bottom: 2rem;
+}
+.video-full-bleed .video-embed {
+  aspect-ratio: unset;
+  height: 39.4vw; /* 16:9 full-width = 56.25vw tall; 30% shorter = 39.4vw */
+}
 
 /* Video embeds */
 .video-embed {
@@ -397,11 +450,14 @@ a.entry-link.entry-link--thumb {
   display: inline-block;
   font-size: 0.75rem;
   letter-spacing: 0.04em;
-  text-transform: lowercase;
   background: #f4f4f4;
   color: var(--fg);
   padding: 0.2rem 0.55rem;
   border-radius: 3px;
   border: none;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 120ms ease;
 }
-a.topic-tag:hover { background: #e8e8e8; opacity: 1; }
+.topic-tag:hover { background: #e8e8e8; }
+.topic-tag--active { background: var(--fg); color: var(--bg); }

@@ -4,8 +4,29 @@ import { getCollection } from 'astro:content';
 import { site } from '../site.config';
 
 const posts = (await getCollection('blog', ({ data }) => !data.draft))
-  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
-  .slice(0, 3);
+  .map((p) => ({
+    type: 'blog' as const,
+    href: `/blog/${p.id}/`,
+    title: p.data.title,
+    description: p.data.description,
+    pubDate: p.data.pubDate,
+    thumb: p.data.heroImage ?? null,
+  }));
+
+const videos = (await getCollection('videos', ({ data }) => !data.draft))
+  .map((v) => ({
+    type: 'video' as const,
+    href: `/videos/${v.id}/`,
+    title: v.data.title,
+    description: v.data.description,
+    pubDate: v.data.pubDate,
+    thumb: `https://img.youtube.com/vi/${v.data.youtubeId}/mqdefault.jpg`,
+  }));
+
+const items = [...posts, ...videos].sort(
+  (a, b) => b.pubDate.valueOf() - a.pubDate.valueOf()
+);
+
 const fmt = (d: Date) =>
   d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric', timeZone: 'UTC' });
 ---
@@ -15,21 +36,19 @@ const fmt = (d: Date) =>
     <p class="lede">{site.description}</p>
   </section>
 
-  {posts.length > 0 && (
-    <section>
-      <h2>Recent writing</h2>
-      <ul class="entry-list">
-        {posts.map((post) => (
-          <li>
-            <a class="entry-link" href={`/blog/${post.id}/`}>
-              <h3>{post.data.title}</h3>
-              <div class="meta">{fmt(post.data.pubDate)}</div>
-              {post.data.description && <p class="desc">{post.data.description}</p>}
-            </a>
-          </li>
-        ))}
-      </ul>
-      <p style="margin-top: 1.5rem;"><a href="/blog/">All posts →</a></p>
-    </section>
-  )}
+  <ul class="entry-list">
+    {items.map((item) => (
+      <li>
+        <a class={`entry-link${item.thumb ? ' entry-link--thumb' : ''}`} href={item.href}>
+          {item.thumb && <img class="entry-thumb" src={item.thumb} alt="" />}
+          <div>
+            <div class={`entry-type-badge entry-type-badge--${item.type}`}>{item.type === 'blog' ? 'Article' : 'Video'}</div>
+            <h3>{item.title}</h3>
+            <div class="meta">{fmt(item.pubDate)}</div>
+            {item.description && <p class="desc">{item.description}</p>}
+          </div>
+        </a>
+      </li>
+    ))}
+  </ul>
 </BaseLayout>

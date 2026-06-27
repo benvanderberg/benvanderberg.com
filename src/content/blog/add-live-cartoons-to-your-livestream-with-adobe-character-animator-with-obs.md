@@ -5,8 +5,6 @@ pubDate: 2021-12-21
 heroImage: "/images/blog/image-4-1536x1078.png"
 ---
 
-![Adobe Character Animator in OBS](/images/blog/image-4-1536x1078.png)
-
 Ever since Adobe Character Animator came out a few years ago, it has consistently blown my mind. I have watched really cool things like the animated [Donald Trump on Stephen Colbert's show](https://www.youtube.com/watch?v=PD9-zrGxrs4). At Adobe MAX in 2016, I got to see [Nancy Cartwright perform Bart Simpson live](https://www.youtube.com/watch?v=nWYBnj1p9wQ) in front of an audience. The idea of animation being something that you could do live just is mind-boggling.
 
 Fast forward several years, I am playing more with tools like OBS. I have started to look into how easy it would be to incorporate a live animation along with other things that I am doing using OBS so I set out to discover just how much effort it would take to incorporate Adobe Character Animator with OBS. This allows me to add live characters on a live stream.

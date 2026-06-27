@@ -2,9 +2,8 @@
 title: "Show taps on iPhone screen when presenting"
 description: "Learn how to show your finger taps on an iPhone or iPad screen while presenting, using iOS Accessibility's AssistiveTouch feature with a Bluetooth mouse."
 pubDate: 2022-01-05
+heroImage: /images/blog/2022-01-01-18-46-31-1.gif
 ---
-
-![Show Taps on iPhone Screen](/images/blog/2022-01-01-18-46-31-1.gif)
 
 Have you ever wanted to show taps when presenting the screen of your iPhone or iPad? As part of my job, I often need to do demos on an iPhone or iPad to showcase how apps work on mobile devices. I use tools like [QuickTime Player](https://www.iosappweekly.com/mirror-screen-iphone-to-mac-quicktime/) or [Reflector](https://www.airsquirrels.com/reflector) to share the screen of my iPhone or iPad on my computer. These work really well to share a screen. However, one thing these do not show very well is where you are tapping. This means that it can be really hard to highlight where people need to tap.
 
