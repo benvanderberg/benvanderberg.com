@@ -2,7 +2,7 @@
 title: "Adobe Photoshop and Generative Fill to customize images for ads"
 description: "How to use Photoshop's Generative Fill to quickly customize and adapt images for advertising campaigns."
 youtubeId: "7EsyXEwN2xA"
-topics: ["Adobe Firefly", "Photoshop", "Adobe Stock"]
+topics: ["Adobe Firefly", "Adobe Photoshop", "Adobe Stock"]
 pubDate: 2024-08-11
 ---
 

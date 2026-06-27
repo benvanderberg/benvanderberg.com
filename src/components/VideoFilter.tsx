@@ -33,6 +33,7 @@ export default function VideoFilter({ videos }: Props) {
         <div className="filter-tabs" role="tablist" aria-label="Filter videos by topic">
           {topics.map((t) => {
             const isActive = t === active;
+            const iconSlug = t.toLowerCase().replace(/\s+/g, '-');
             return (
               <button
                 key={t}
@@ -42,6 +43,16 @@ export default function VideoFilter({ videos }: Props) {
                 className={`filter-tab${isActive ? ' filter-tab--active' : ''}`}
                 onClick={() => setActive(t)}
               >
+                {t !== ALL && (
+                  <img
+                    src={`/icons/${iconSlug}.svg`}
+                    alt=""
+                    width={22}
+                    height={22}
+                    className="filter-tab__icon"
+                    onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = 'none'; }}
+                  />
+                )}
                 {t}
               </button>
             );
@@ -62,16 +73,27 @@ export default function VideoFilter({ videos }: Props) {
               {v.description && <p className="video-item__desc">{v.description}</p>}
               {v.topics.length > 0 && (
                 <div className="video-item__topics">
-                  {v.topics.map((t) => (
-                    <button
-                      key={t}
-                      type="button"
-                      className={`topic-tag${t === active ? ' topic-tag--active' : ''}`}
-                      onClick={() => setActive(t)}
-                    >
-                      {t}
-                    </button>
-                  ))}
+                  {v.topics.map((t) => {
+                    const iconSlug = t.toLowerCase().replace(/\s+/g, '-');
+                    return (
+                      <button
+                        key={t}
+                        type="button"
+                        title={t}
+                        aria-label={t}
+                        className={`topic-tag topic-tag--icon${t === active ? ' topic-tag--active' : ''}`}
+                        onClick={() => setActive(t)}
+                      >
+                        <img
+                          src={`/icons/${iconSlug}.svg`}
+                          alt=""
+                          width={20}
+                          height={20}
+                          onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = 'none'; }}
+                        />
+                      </button>
+                    );
+                  })}
                 </div>
               )}
             </article>

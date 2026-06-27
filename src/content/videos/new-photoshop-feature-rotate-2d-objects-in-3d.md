@@ -2,7 +2,7 @@
 title: "NEW Photoshop Feature: Rotate 2D Objects in 3D"
 description: "Explore Photoshop's new Rotate Object feature, which lets you reposition 2D objects in 3D space and harmonize them with the scene."
 youtubeId: "9buAlOJeLCw"
-topics: ["Photoshop"]
+topics: ["Adobe Photoshop"]
 pubDate: 2026-03-23
 ---
 

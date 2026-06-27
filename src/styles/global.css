@@ -413,6 +413,14 @@ a.entry-link.entry-link--thumb {
   color: var(--bg);
   border-color: var(--fg);
 }
+.filter-tab__icon {
+  display: inline;
+  width: 22px;
+  height: 22px;
+  vertical-align: middle;
+  margin-right: 0.5rem;
+  flex-shrink: 0;
+}
 
 /* Video grid */
 .video-grid {
@@ -461,3 +469,12 @@ a.entry-link.entry-link--thumb {
 }
 .topic-tag:hover { background: #e8e8e8; }
 .topic-tag--active { background: var(--fg); color: var(--bg); }
+.topic-tag--icon {
+  padding: 0.25rem;
+  line-height: 0;
+}
+.topic-tag--icon img {
+  display: block;
+  margin: 0;
+  border-radius: 0;
+}

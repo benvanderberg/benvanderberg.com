@@ -2,7 +2,7 @@
 title: "Generating personalized documents from Microsoft Dynamics (Paper Clips)"
 description: "How to pull data from Microsoft Dynamics CRM and use it with Adobe Document Generation API to produce personalized PDF documents automatically."
 youtubeId: "YHcSNK3lbTo"
-topics: ["Adobe PDF Services", "Microsoft Dynamics", "Microsoft Power Apps", "Microsoft Power Automate"]
+topics: ["Adobe PDF Services", "Microsoft Dataverse", "Microsoft Power Apps", "Microsoft Power Automate"]
 pubDate: 2021-09-01
 ---
 

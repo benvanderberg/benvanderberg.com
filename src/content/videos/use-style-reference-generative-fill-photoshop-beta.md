@@ -2,7 +2,7 @@
 title: "Use Style reference with Generative Fill in Photoshop Beta"
 description: "Learn how to use Style references alongside Generative Fill in Photoshop Beta to produce consistent, stylized AI edits."
 youtubeId: "krnD3NJlSR8"
-topics: ["Photoshop", "Adobe Firefly"]
+topics: ["Adobe Photoshop", "Adobe Firefly"]
 pubDate: 2024-08-15
 ---
 
