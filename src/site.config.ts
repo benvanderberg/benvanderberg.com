@@ -1,6 +1,6 @@
 export const site = {
   title: 'Ben Vanderberg',
-  description: 'Personal site, blog, apps, and plugins.',
+  description: 'Ben Vanderberg is a Creative Technologist with over 20 years of experience in media technologies. He is currently Executive Creative Technologist at Adobe and Director of the Creative Technology Lab.',
   author: 'Ben Vanderberg',
   nav: [
     { label: 'Home', href: '/' },
@@ -8,8 +8,6 @@ export const site = {
     { label: 'Blog', href: '/blog/' },
     { label: 'Events', href: '/events/' },
     { label: 'Videos', href: '/videos/' },
-    { label: 'Apps', href: '/apps/' },
-    { label: 'Plugins', href: '/plugins/' },
     { label: 'Search', href: '/search/' },
   ],
 };

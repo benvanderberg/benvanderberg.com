@@ -323,7 +323,7 @@ a.entry-link.entry-link--thumb {
 }
 .video-full-bleed .video-embed {
   aspect-ratio: unset;
-  height: 39.4vw; /* 16:9 full-width = 56.25vw tall; 30% shorter = 39.4vw */
+  height: 39.4vw;
 }
 
 /* Video embeds */

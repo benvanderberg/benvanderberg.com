@@ -29,11 +29,11 @@ const past = all
       <ul class="entry-list">
         {upcoming.map((event) => (
           <li>
-            <a class="entry-link event-row" href={`/events/${event.id}/`}>
+            <a class={`entry-link${event.data.image ? ' entry-link--thumb' : ''}`} href={`/events/${event.id}/`}>
               {event.data.image && (
-                <img class="event-thumb" src={event.data.image} alt="" loading="lazy" />
+                <img class="entry-thumb" src={event.data.image} alt="" loading="lazy" />
               )}
-              <div class="event-row-body">
+              <div>
                 <h3>{event.data.title}</h3>
                 <div class="meta">
                   {formatEventDateShort(event.data.startDate, hasTime(event.data.startDate))}
@@ -54,11 +54,11 @@ const past = all
       <ul class="entry-list">
         {past.map((event) => (
           <li>
-            <a class="entry-link event-row" href={`/events/${event.id}/`}>
+            <a class={`entry-link${event.data.image ? ' entry-link--thumb' : ''}`} href={`/events/${event.id}/`}>
               {event.data.image && (
-                <img class="event-thumb" src={event.data.image} alt="" loading="lazy" />
+                <img class="entry-thumb" src={event.data.image} alt="" loading="lazy" />
               )}
-              <div class="event-row-body">
+              <div>
                 <h3>{event.data.title}</h3>
                 <div class="meta">
                   {formatEventDateShort(event.data.startDate, hasTime(event.data.startDate))}
@@ -73,26 +73,3 @@ const past = all
     </section>
   )}
 </BaseLayout>
-
-<style>
-  .event-row {
-    display: grid;
-    grid-template-columns: 120px 1fr;
-    gap: 1.25rem;
-    align-items: start;
-  }
-  .event-row:not(:has(.event-thumb)) {
-    grid-template-columns: 1fr;
-  }
-  .event-thumb {
-    width: 120px;
-    height: 80px;
-    object-fit: cover;
-    border-radius: 4px;
-    border: 1px solid var(--rule);
-  }
-  @media (max-width: 480px) {
-    .event-row { grid-template-columns: 1fr; }
-    .event-thumb { width: 100%; height: 160px; }
-  }
-</style>
