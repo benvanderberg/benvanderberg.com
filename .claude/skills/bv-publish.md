@@ -4,7 +4,7 @@ Publish the site: commit + push source, build, deploy dist to the publish repo.
 
 ## Repos
 - **Source**: https://github.com/benvanderberg/benvanderberg.com (remote `origin`)
-- **Publish**: https://github.com/benvanderberg/benvanderberg.com-publish (deploy target, force-pushed)
+- **Publish**: https://github.com/benvanderberg/benvanderberg.com-publish (persistent clone at `/Users/bvanderb/Documents/GitHub/benvanderberg.com-publish/`)
 
 ## Steps
 
@@ -33,26 +33,26 @@ source ~/.nvm/nvm.sh && nvm use 23 && npm run build
 
 ### 3 — Deploy dist/ to publish repo
 
-`dist/` is gitignored from the source repo and acts as an independent git repo:
+A persistent clone of the publish repo lives at `/Users/bvanderb/Documents/GitHub/benvanderberg.com-publish/`. **Never use `dist/.git`** — Astro wipes `dist/` on every build, and running git commands in a gitless `dist/` will walk up and corrupt the source repo's remotes.
 
 ```bash
-cd /Users/bvanderb/Documents/GitHub/benvanderberg.com/dist
+PUBLISH=/Users/bvanderb/Documents/GitHub/benvanderberg.com-publish
+DIST=/Users/bvanderb/Documents/GitHub/benvanderberg.com/dist
 
-# Init if not already a git repo
-git init -b main 2>/dev/null || true
+# Pull latest so we stay fast-forwardable
+git -C $PUBLISH pull origin main
 
-# Set remote (add or update)
-git remote get-url origin 2>/dev/null \
-  && git remote set-url origin https://github.com/benvanderberg/benvanderberg.com-publish.git \
-  || git remote add origin https://github.com/benvanderberg/benvanderberg.com-publish.git
+# Wipe publish clone contents (preserve .git)
+find $PUBLISH -mindepth 1 -maxdepth 1 -not -name '.git' -exec rm -rf {} +
 
-# Stage everything, commit, force-push
-git add -A
-git commit -m "Deploy $(date -u '+%Y-%m-%d %H:%M UTC')"
-git push --force origin main
+# Copy fresh build output in
+cp -R $DIST/. $PUBLISH/
+
+# Commit and push (no force — cPanel needs fast-forward history)
+git -C $PUBLISH add -A
+git -C $PUBLISH commit -m "Deploy $(date -u '+%Y-%m-%d %H:%M UTC')"
+git -C $PUBLISH push origin main
 ```
-
-Force-push is intentional — the publish repo is a deployment target, not a history-preserving branch.
 
 ## Reporting
 
