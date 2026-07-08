@@ -14,8 +14,18 @@ const { video } = Astro.props;
 const { Content } = await render(video);
 const fmt = (d: Date) =>
   d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' });
+// YouTube's high-res thumbnail doubles as the social share image, unless a
+// per-video override is set (older videos may lack a maxresdefault.jpg).
+const thumbnail =
+  video.data.socialImage ??
+  `https://img.youtube.com/vi/${video.data.youtubeId}/maxresdefault.jpg`;
 ---
-<BaseLayout title={video.data.title} description={video.data.description}>
+<BaseLayout
+  title={video.data.title}
+  description={video.data.description}
+  image={thumbnail}
+  ogType="video.other"
+>
   <div class="video-page">
     <div class="video-full-bleed">
       <div class="video-embed">

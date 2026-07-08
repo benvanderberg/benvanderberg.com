@@ -9,9 +9,26 @@ interface Props {
   description?: string;
   wide?: boolean;
   canonicalUrl?: string;
+  /** Relative (e.g. "/images/x.jpg") or absolute image URL for social share cards. */
+  image?: string;
+  /** Open Graph type: "website" (default), "article", "video.other", etc. */
+  ogType?: string;
 }
-const { title, description = site.description, wide = false, canonicalUrl } = Astro.props;
+const {
+  title,
+  description = site.description,
+  wide = false,
+  canonicalUrl,
+  image = '/images/og-default.png',
+  ogType = 'website',
+} = Astro.props;
 const fullTitle = title ? `${title} — ${site.title}` : site.title;
+
+// Social scrapers require absolute URLs. new URL() leaves already-absolute
+// image URLs (e.g. YouTube thumbnails) untouched and resolves relative ones
+// against the configured site origin.
+const pageUrl = new URL(Astro.url.pathname, Astro.site).href;
+const imageUrl = new URL(image, Astro.site).href;
 ---
 <!doctype html>
 <html lang="en">
@@ -22,10 +39,19 @@ const fullTitle = title ? `${title} — ${site.title}` : site.title;
     <meta name="generator" content={Astro.generator} />
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl ?? pageUrl} />
+    <!-- Open Graph (LinkedIn, Facebook, Slack) -->
+    <meta property="og:site_name" content={site.title} />
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
-    <meta property="og:type" content="website" />
-    {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
+    <meta property="og:type" content={ogType} />
+    <meta property="og:url" content={pageUrl} />
+    <meta property="og:image" content={imageUrl} />
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={imageUrl} />
     <!-- Google Analytics -->
     <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-EKNK7E8PJW"></script>
     <script is:inline>

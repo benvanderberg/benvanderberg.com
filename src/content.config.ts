@@ -40,6 +40,9 @@ const videos = defineCollection({
     description: z.string().optional(),
     // The 11-character YouTube video ID (e.g. "dQw4w9WgXcQ" — the part after "v=" in the URL).
     youtubeId: z.string().min(5),
+    // Optional override for the social share image. Defaults to the YouTube maxres
+    // thumbnail; set this only for older videos that lack a maxresdefault.jpg.
+    socialImage: z.string().optional(),
     // Tags used by the filter tabs on /videos. Lowercase, e.g. ["talks", "demos"].
     topics: z.array(z.string()).default([]),
     pubDate: z.coerce.date(),

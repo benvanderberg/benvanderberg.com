@@ -2,6 +2,7 @@
 title: "Adobe PDF Extract API Overview"
 description: "An overview of Adobe PDF Extract API — how it uses AI to extract text, tables, and structure from PDFs as structured JSON data."
 youtubeId: "oIG6U_dDHII"
+socialImage: "https://img.youtube.com/vi/oIG6U_dDHII/sddefault.jpg"
 topics: ["Adobe PDF Services"]
 pubDate: 2021-08-01
 ---
