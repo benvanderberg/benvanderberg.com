@@ -6,8 +6,6 @@ heroImage: /blog/automatically-ocr-pdf-documents-added-in-adobe-workfront/01.png
 canonicalUrl: "https://medium.com/adobetech/automatically-ocr-pdf-documents-added-in-adobe-workfront-42bb5df210a2"
 ---
 
-Ben Vanderberg highlighted
-
 ## Create a Scenario in Workfront Fusion in just a couple of minutes to automatically OCR your scanned PDFs in your Workfront projects.
 
 
