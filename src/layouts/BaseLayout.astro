@@ -39,6 +39,7 @@ const imageUrl = new URL(image, Astro.site).href;
     <meta name="generator" content={Astro.generator} />
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
+    <meta name="author" content={site.author} />
     <link rel="canonical" href={canonicalUrl ?? pageUrl} />
     <!-- Open Graph (LinkedIn, Facebook, Slack) -->
     <meta property="og:site_name" content={site.title} />
@@ -47,6 +48,7 @@ const imageUrl = new URL(image, Astro.site).href;
     <meta property="og:type" content={ogType} />
     <meta property="og:url" content={pageUrl} />
     <meta property="og:image" content={imageUrl} />
+    {ogType !== 'website' && <meta property="article:author" content={site.author} />}
     <!-- Twitter / X -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={fullTitle} />
