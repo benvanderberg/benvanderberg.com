@@ -1,6 +1,6 @@
 ---
 title: "Create Visual FX using Adobe Firefly Boards"
-description: "Use Adobe Firefly Boards to generate and compose visual effects for creative and motion projects."
+description: "Use Adobe Firefly Boards to generate and compose visual effects for your creative and motion projects, taking an idea from initial concept through to a finished, polished shot."
 youtubeId: "sIo75hcvNKA"
 topics: ["Adobe Firefly"]
 pubDate: 2025-09-19

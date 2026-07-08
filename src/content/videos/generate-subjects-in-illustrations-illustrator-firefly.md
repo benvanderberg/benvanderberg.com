@@ -1,6 +1,6 @@
 ---
 title: "Generate subjects in your illustrations in Adobe Illustrator with Firefly"
-description: "How to use Adobe Firefly to generate illustration subjects directly inside Adobe Illustrator."
+description: "How to use Adobe Firefly to generate illustration subjects directly inside Adobe Illustrator, adding new elements to your artwork without ever leaving the canvas."
 youtubeId: "KlUmP6QIPzA"
 topics: ["Adobe Illustrator"]
 pubDate: 2024-08-12

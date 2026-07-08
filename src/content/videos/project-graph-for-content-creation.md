@@ -1,6 +1,6 @@
 ---
 title: "Firefly Graph for content creation"
-description: "A look at Project Graph, a tool designed to organize and streamline the content creation workflow."
+description: "A look at Project Graph, a tool designed to organize and streamline your content creation workflow, from the initial idea all the way through to final delivery."
 youtubeId: "PP1X-Z7SZrQ"
 topics: ["Adobe Firefly Graph", "Adobe Firefly"]
 pubDate: 2026-02-26
