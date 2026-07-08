@@ -1,7 +1,7 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/USERNAME/public_html/
+    - export DEPLOYPATH=$HOME/public_html/
     - /bin/cp -R _astro $DEPLOYPATH
     - /bin/cp -R about $DEPLOYPATH
     - /bin/cp -R apps $DEPLOYPATH
