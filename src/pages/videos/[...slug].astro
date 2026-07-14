@@ -19,6 +19,10 @@ const fmt = (d: Date) =>
 const thumbnail =
   video.data.socialImage ??
   `https://img.youtube.com/vi/${video.data.youtubeId}/maxresdefault.jpg`;
+// Build the embed URL, optionally starting playback at a specific offset.
+const embedParams = new URLSearchParams({ rel: '0' });
+if (video.data.startTime != null) embedParams.set('start', String(video.data.startTime));
+const embedSrc = `https://www.youtube-nocookie.com/embed/${video.data.youtubeId}?${embedParams}`;
 ---
 <BaseLayout
   title={video.data.title}
@@ -30,7 +34,7 @@ const thumbnail =
     <div class="video-full-bleed">
       <div class="video-embed">
         <iframe
-          src={`https://www.youtube-nocookie.com/embed/${video.data.youtubeId}?rel=0`}
+          src={embedSrc}
           title={video.data.title}
           loading="lazy"
           allow="accelerated-2d-canvas; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"

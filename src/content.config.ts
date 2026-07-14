@@ -43,6 +43,9 @@ const videos = defineCollection({
     // Optional override for the social share image. Defaults to the YouTube maxres
     // thumbnail; set this only for older videos that lack a maxresdefault.jpg.
     socialImage: z.string().optional(),
+    // Optional start offset in seconds — the embedded player begins playback here.
+    // Useful for linking to a specific moment in a long video (e.g. a keynote segment).
+    startTime: z.number().int().nonnegative().optional(),
     // Tags used by the filter tabs on /videos. Lowercase, e.g. ["talks", "demos"].
     topics: z.array(z.string()).default([]),
     pubDate: z.coerce.date(),
