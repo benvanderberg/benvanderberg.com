@@ -4,7 +4,7 @@ description: "Ben Vanderberg walks through how AI Agents are incorporated into C
 youtubeId: "48e29Ge2Ugo"
 startTime: 4680
 topics: ["Adobe Firefly", "Adobe Photoshop", "Frame.io"]
-pubDate: 2026-04-20
+pubDate: 2026-04-19
 ---
 
 From the Adobe Summit 2026 Day One keynote, Ben Vanderberg walks through how AI Agents are woven into Content Supply Chain workflows — spanning Frame.io, Adobe Photoshop, Firefly Boards, and more — to move creative work from idea to delivery faster.
